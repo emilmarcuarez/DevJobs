@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Salario;
+use App\Models\Vacante;
 use Livewire\Component;
 use App\Models\Categoria;
 use Livewire\WithFileUploads;
@@ -36,6 +37,29 @@ class CrearVacante extends Component
     // esta funcion se ejecuta al darle clic al formulario. porque este la llama al darle clic al boton para validar si los campos cumplen con las reglas
     public function crearVacante(){
        $datos= $this->validate();
+
+    //    almacenar la imagen
+        $imagen=$this->imagen->store('public/vacantes');
+        // permite guardar solo el nombre de la imagen en la base de datos
+        $datos['imagen']=str_replace('public/vacantes/','',$imagen);
+   
+    // crear la vacante
+        Vacante::create([
+            'titulo'=> $datos['titulo'],   
+            'salario_id'=> $datos['salario'],                                                   
+            'categoria_id'=> $datos['categoria'],
+            'empresa'=> $datos['empresa'],
+            'ultimo_dia'=> $datos['ultimo_dia'],
+            'descripcion'=> $datos['descripcion'],
+            'imagen'=>  $datos['imagen'],
+            'user_id'=> auth()->user()->id,
+        ]);
+
+    // crear un mensaje. MENSAJE es el nombre del dicho mensaje y el segundo parametro es lo que va acontener el mismo
+        session()->flash('mensaje', 'La vacante se publico correctamente');
+    // redireccionar al usuario
+        return redirect()->route('vacantes.index');
+
     }
     public function render()
     {
