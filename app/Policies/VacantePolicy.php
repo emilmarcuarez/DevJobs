@@ -11,9 +11,11 @@ class VacantePolicy
     /**
      * Determine whether the user can view any models.
      */
+    // esto hace de que si el que visita la pagina es rol 2 es decir, es reclutador, puede ver este modelo de vacante, si no se le bloquea y no puede hacer nada
     public function viewAny(User $user): bool
     {
         //
+        return $user->rol === 2;
     }
 
     /**
@@ -27,9 +29,10 @@ class VacantePolicy
     /**
      * Determine whether the user can create models.
      */
+    // 
     public function create(User $user): bool
     {
-        //
+        return $user->rol === 2;
     }
 
     /**

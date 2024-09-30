@@ -14,6 +14,8 @@ class VacanteController extends Controller
      */
     public function index()
     {
+        // busca en el policy esa funcion para que valide
+        $this->authorize('viewAny', Vacante::class);
       return view('vacantes.index'); //carpeta.archivodentro
     }
 
@@ -22,6 +24,7 @@ class VacanteController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Vacante::class);
         return view('vacantes.create');
     }
 
