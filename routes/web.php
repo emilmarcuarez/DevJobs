@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\NotificacionController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VacanteController;
+use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\NotificacionController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get('/dashboard', [VacanteController::class, 'index'])->middleware(['auth', 'verified'])->name('vacantes.index');
 Route::get('/vacantes/create', [VacanteController::class, 'create'])->middleware(['auth', 'verified'])->name('vacantes.create');
@@ -21,7 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// candidatos
+Route::get('/candidatos/{vacante}', [CandidatoController::class, 'index'])->name('candidatos.index');
 // notificaciones. No se especifica nada porque es invoke, solo usa eso
-Route::get('/notificaciones', NotificacionController::class);
+Route::get('/notificaciones', NotificacionController::class)->middleware(['auth', 'verified', 'rol.reclutador'])->name('notificaciones');
 
 require __DIR__.'/auth.php';
