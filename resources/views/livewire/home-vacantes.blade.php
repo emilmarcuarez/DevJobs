@@ -15,6 +15,12 @@
                         <p class="text-base text-gray-600">
                             {{ $vacante->empresa }}
                         </p>
+                        <p class="text-base text-gray-600">
+                            {{ $vacante->categoria->categoria }}
+                        </p>
+                        <p class="text-base text-gray-600">
+                            {{ $vacante->salario->salario }}
+                        </p>
                         <p class="font-bold text-xs text-gray-600 mb-1">
                           Ultimo dia para postularse:
                           <span class="font-normal">
