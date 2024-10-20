@@ -7,9 +7,16 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        './resources/**/*.blade.php'
+        './resources/**/*.blade.php',
     ],
 
+    theme: {
+        extend: {
+            colors: {
+                'purple-custom': '#8e44ad',
+            },
+        },
+    },
 
     plugins: [forms],
 };

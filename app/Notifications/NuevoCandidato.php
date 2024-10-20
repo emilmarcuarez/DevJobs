@@ -36,7 +36,7 @@ class NuevoCandidato extends Notification
                     ->line('Has recibido un nuevo candidato en tu vacante')
                     ->line('La vacante es: ' . $this->nombre_vacante)
                     ->action('Ver notificaciones', url('/'))
-                    ->line('Gracias por utilizar devJobs');
+                    ->line('Gracias por utilizar LinkJobs');
     }
 
     // almacena las notificaciones en la base de datos

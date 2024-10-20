@@ -18,7 +18,7 @@
 
         <!-- Email Address -->
         <div class="mt-4">
-            <x-input-label for="email" :value="__('¿Que tipo de cuenta desea en devjobs?')" />
+            <x-input-label for="email" :value="__('¿Que tipo de cuenta desea en Linkjobs?')" />
 
             <select 
             name="rol" 

@@ -9,7 +9,7 @@
  @else
     <form wire:submit.prevent='postularme' action="" class="w-96 mt-5">
             <div class="mb-4">
-                <x-input-label for="cv" :value="__('Curriculum o Hoja de vida')" class="text-black"/>
+                <x-input-label for="cv" :value="__('Curriculum o Hoja de vida')" class="text-gray-800"/>
                 <x-text-input id="cv" type="file" wire:model="cv" accept=".pdf" class="block mt-1 w-full" />
             </div>
             
