@@ -34,7 +34,8 @@ class PostularVacante extends Component
         //  crear el candidato a la vacante. No se pone la vacante porque ya se definio en la relacion 
         $this->vacante->candidatos()->create([
             'user_id' => auth()->user()->id,
-            'cv' => $datos['cv']
+            'cv' => $datos['cv'],
+            'estado' => '1'
         ]);
         
         // crear notificacion y enviar el email

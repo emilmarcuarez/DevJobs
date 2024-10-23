@@ -18,7 +18,10 @@ class VacanteController extends Controller
         $this->authorize('viewAny', Vacante::class);
       return view('vacantes.index'); //carpeta.archivodentro
     }
-
+    public function applied()
+    {
+      return view('vacantes.applied'); //carpeta.archivodentro
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -47,6 +47,15 @@
                                             Ver CV
                                         </a>
                                     </div>
+                                    @if($candidato->estado != '2' )
+                                        <livewire:editar-estado
+                                        :candidato="$candidato"
+                                        />
+                                    @else
+                                        <p class="text-gray-800 dark:text-gray-200 font-bold pl-1 block">Ya ha sido aceptado</p>
+                                    @endif
+                                    
+                                    
                                 </li>
 
                                 @empty

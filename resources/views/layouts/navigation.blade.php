@@ -5,22 +5,30 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('vacantes.index') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
 
                 @auth
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
-                        {{ __('Mis Vacantes') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')"> 
-                        {{-- //routeis marca la pagina activa en caso de que lo  este --}}
-                        {{ __('Crear vacante') }}
-                    </x-nav-link>
-                </div>
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            @if (auth()->user()->rol === 2)
+                            <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
+                                {{ __('Mis Vacantes') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')"> 
+                                {{-- //routeis marca la pagina activa en caso de que lo  este --}}
+                                {{ __('Crear vacante') }}
+                            </x-nav-link>
+                           @else
+                           <x-nav-link :href="route('vacantes.applied')" :active="request()->routeIs('vacantes.applied')">
+                            {{ __('Mis postulaciones') }}
+                        </x-nav-link>
+                            @endif
+
+                        </div>
+               
                 @endauth
 
                
@@ -97,11 +105,12 @@
        @auth
            
         <div class="pt-2 pb-3 space-y-1">
+            @if (auth()->user()->rol === 2)
             <x-responsive-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
                 {{ __('Mis Vacantes') }}
             </x-responsive-nav-link>
 
-            @if (auth()->user()->rol === 2)
+            
                 <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
                     {{ __('Crear vacante') }}
                 </x-responsive-nav-link>
@@ -113,7 +122,10 @@
                         @choice('Notificacion|Notificaciones',Auth::user()->unreadNotifications->count())
                     </p>
                 </div>
-               
+                @else
+                           <x-nav-link :href="route('vacantes.applied')" :active="request()->routeIs('vacantes.applied')">
+                            {{ __('Mis postulaciones') }}
+                        </x-nav-link>
             @endif
         </div>
 

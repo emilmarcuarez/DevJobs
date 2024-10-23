@@ -13,7 +13,8 @@ class Candidato extends Model
     protected $fillable=[
         'user_id',
         'vacante_id',
-        'cv'
+        'cv',
+        'estado'
     ];
     
     //  que el campo user es la relacion de candidato con la vacante. aqui traemos al usuario asoicado a la vacante
